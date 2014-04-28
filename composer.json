@@ -1,6 +1,6 @@
 {
 	"name": "misfrog/cake-social",
-	"description": "Social plugin for CakePHP v2.x, allowing simple plug-n-play 3rd-party authentication with CakePHP",
+	"description": "Social plugin for CakePHP v2.x, allows you to connect your applications with SaaS providers such as Facebook and Twitter.",
 	"type": "cakephp-plugin",
 	"keywords": ["cakephp", "opauth", "authentication", "auth", "social"],
 	"homepage": "http://misfrog.com",
