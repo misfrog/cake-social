@@ -20,7 +20,7 @@ if (file_exists(APP.'Vendor'.DS.'autoload.php')) {
  * Begins and ends with /
  * eg. if Opauth is reached via http://example.org/auth/, path is '/auth/'
  */
-Configure::write('Opauth.path', '/auth/');
+Configure::write('Opauth.path', '/connect/');
 
 /**
  * Whether to view Opauth debug messages

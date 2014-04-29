@@ -43,7 +43,7 @@ class UserConnectionsController extends SocialAppController {
 		}
 	}
 	
-	public function auth($provider) {
+	public function connect($provider) {
 		$this->Connection->connect();
 	}
 	
@@ -112,6 +112,8 @@ class UserConnectionsController extends SocialAppController {
 			}
 		}
 	
+		Debugger::log($response);
+		
 		$user = $this->Auth->user();
 		if (!empty($user)) {
 			$connection = $this->createConnection($response);
@@ -121,8 +123,6 @@ class UserConnectionsController extends SocialAppController {
 			$this->Connection->handlePostSignIn();
 			$this->redirect($this->referer());	// TODO
 		}
-		
-		Debugger::log($response);
 		
 		$options = array('recursive' => 0, 'conditions' => array(
 			'UserConnection.provider_id' => $response['auth']['provider'],
