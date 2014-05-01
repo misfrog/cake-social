@@ -19,14 +19,11 @@ App::uses('ConnectionFactory', 'Social.Model');
 /**
  * UserConnections Controller
  * 
+ * @property Social.Connection $Connection
  * @property UserConnection $UserConnection
  * @property Opauth $Opauth
  */
 class UserConnectionsController extends SocialAppController {
-	
-	public $components = array(
-		'Social.Connection'
-		);
 	
 	public $Opauth;
 	
@@ -112,8 +109,6 @@ class UserConnectionsController extends SocialAppController {
 			}
 		}
 	
-		Debugger::log($response);
-		
 		$user = $this->Auth->user();
 		if (!empty($user)) {
 			$connection = $this->createConnection($response);
@@ -121,7 +116,7 @@ class UserConnectionsController extends SocialAppController {
 			$this->UserConnection->create();
 			$this->UserConnection->save($connection);
 			$this->Connection->handlePostSignIn();
-			$this->redirect($this->referer());	// TODO
+			return $this->redirect($this->referer());
 		}
 		
 		$options = array('recursive' => 0, 'conditions' => array(
@@ -132,7 +127,8 @@ class UserConnectionsController extends SocialAppController {
 		if (!$connection) {
 			$connection = $this->createConnection($response);
 			$this->Session->write('Connection.data', $connection);
-			return $this->redirect(array('plugin' => false, 'controller' => 'accounts', 'action' => 'add'));	// TODO
+			var_dump($this->Connection->signUpUrl);
+			return $this->redirect($this->Connection->signUpUrl);
 		}
 		
 		$this->login($connection['User']);
@@ -141,7 +137,7 @@ class UserConnectionsController extends SocialAppController {
 	protected function login($user) {
 		if ($this->Auth->login($user)) {
 			$this->Connection->handlePostSignIn();
-			$this->redirect($this->Auth->redirectUrl());
+			$this->redirect($this->Connection->loginRedirect);
 		}
 	}
 	

@@ -14,6 +14,9 @@ class ConnectionComponent extends Component {
 	
 	public $Opauth;
 	
+	public $signUpUrl = null;
+	public $loginRedirect = null;
+	
 	private $UserConnection;
 	
 	public function __construct(ComponentCollection $collection, array $settings = array()) {
