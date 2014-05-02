@@ -26,7 +26,7 @@ You need to enable the plugin in your app/Config/bootstrap.php file:
 
 Sample Applications
 ----------
-An example project is available in the showcase repository.
+An example project is available in the [showcase repository](https://github.com/misfrog/cake-social-showcase).
 
 How to use
 ----------
