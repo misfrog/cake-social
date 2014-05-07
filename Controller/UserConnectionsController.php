@@ -41,6 +41,7 @@ class UserConnectionsController extends SocialAppController {
 	}
 	
 	public function connect($provider) {
+		$this->autoRender = false;
 		$this->Connection->connect();
 	}
 	
